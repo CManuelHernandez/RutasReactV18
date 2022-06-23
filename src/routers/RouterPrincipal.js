@@ -4,6 +4,7 @@ import { Articulos } from "../componentes/Articulos";
 import { Contacto } from "../componentes/Contacto";
 import { Error } from "../componentes/Error";
 import { Inicio } from "../componentes/Inicio";
+import { Persona } from "../componentes/Persona";
 
 export const RouterPrincipal = () => {
   return (
@@ -49,6 +50,7 @@ export const RouterPrincipal = () => {
           <Route path="/inicio" element={<Inicio />} />
           <Route path="/articulos" element={<Articulos />} />
           <Route path="/contacto" element={<Contacto />} />
+          <Route path="/persona/:nombre/:apellido" element={<Persona />} />
           <Route path="*" element={<Error />} />
         </Routes>
       </section>
