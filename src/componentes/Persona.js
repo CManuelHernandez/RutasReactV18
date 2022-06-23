@@ -1,11 +1,26 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 export const Persona = () => {
   // Valores por defecto en parametros opciones
   // const { nombre = "UnNamed", apellido = "UnSurNamed" } = useParams();
 
   const { nombre, apellido } = useParams();
+  const navegar = useNavigate();
+
+  const enviar = (e) => {
+    e.preventDefault();
+    let nombre = e.target.nombre.value;
+    let apellido = e.target.apellido.value;
+    let url = `/persona/${nombre}/${apellido}`;
+
+    if (nombre.length <= 0 && apellido.length <= 0) {
+      navegar("/inicio");
+    } else {
+      navegar(url);
+    }
+  };
+
   return (
     <div>
       {!nombre && <h1>No hay ninguna persona que mostrar</h1>}
@@ -15,6 +30,12 @@ export const Persona = () => {
         </h1>
       )}
       <p>Esta es la página de Persona</p>
+
+      <form onSubmit={enviar}>
+        <input type="text" name="nombre" />
+        <input type="text" name="apellido" />
+        <input type="submit" name="enviar" value="enviar" />
+      </form>
     </div>
   );
 };
